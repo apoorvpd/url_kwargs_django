@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if username %}
+        <h1>Gift of {{ username }}</h1>
+        {% if in_session %}
+            <form action="{% url 'gifts' %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="gift_name" placeholder="Gift Name">
+                <input type="submit" value="Add Item" />
+            </form>
+        {% endif %}
+        <ul>
+            {% for gift in gifts %}
+                <li>{{ gift.name }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>log in required! or register a new account <a href="/register">here</a>.</p>
+    {% endif %}
+{% endblock %}

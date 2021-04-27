@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if username %}
+        <h1>{{ username }}</h1>
+        <ul>
+            {% for user in users %}
+                <li><a href="{% url 'gifts' username=user.username %}">{{ user.username }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>log in required! or register a new account <a href="/register">here</a>.</p>
+    {% endif %}
+{% endblock %}

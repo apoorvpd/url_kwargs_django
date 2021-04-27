@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if error_messages %}
+        {{ error_messages }}
+    {% endif %}
+
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td>email:</td>
+                <td><input type="email" name="email" required value="{% if email_in %}{{ email_in }}{% endif %}"></td>
+            </tr>
+            <tr>
+                <td>username:</td>
+                <td><input type="text" name="username" required value="{% if username_in %}{{ username_in }}{% endif %}" pattern="[a-zA-Z0-9]+" title="use alphanumeric values only"></td>
+            </tr>
+            <tr>
+                <td>password:</td>
+                <td><input type="password" name="password" required value="{% if password_in %}{{password_in}}{% endif %}"/></td>
+            </tr>
+        </table>
+        <input type="submit" value="Register" />
+    </form>
+{% endblock %}
